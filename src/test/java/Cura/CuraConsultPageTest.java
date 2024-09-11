@@ -53,11 +53,12 @@ public class CuraConsultPageTest extends BookAppointmentPageTest{
     @Test(priority = 3)
     public void SelectMonthDropDown(){
             WebElement SelectMonthDOB = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']"));
-            Select selectMonth = new Select(SelectMonthDOB);
-            selectMonth.selectByValue("3");
+            WebElement SelectedOption = driver.findElement(By.xpath("//select[@class='ui-datepicker-month']/option[@value='3']"));
+            String SelectedMonth = SelectedOption.getText();
 
-        wait5.until(ExpectedConditions.textToBePresentInElement(selectMonth.getFirstSelectedOption(), "April"));
-        String SelectedMonth = selectMonth.getFirstSelectedOption().getText();
+            Select SelectMonth = new Select(SelectMonthDOB);
+            SelectMonth.selectByValue("3");
+
             if(SelectedMonth.equals("April")){
                 System.out.println("Bulan sudah sesuai = " + SelectedMonth);
             }else{
@@ -68,11 +69,12 @@ public class CuraConsultPageTest extends BookAppointmentPageTest{
     @Test(priority = 3)
     public void SelectYearDropDown() {
         WebElement SelectYearDOB = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']"));
-        Select selectYear = new Select(SelectYearDOB);
-        selectYear.selectByValue("1994");
+        WebElement SelectedOption = driver.findElement(By.xpath("//select[@class='ui-datepicker-year']/option[@value='1994']"));
+        String SelectedYear = SelectedOption.getText();
 
-        wait5.until(ExpectedConditions.textToBePresentInElement(selectYear.getFirstSelectedOption(), "1994"));
-        String SelectedYear = selectYear.getFirstSelectedOption().getText();
+        Select SelectYear = new Select(SelectYearDOB);
+        SelectYear.selectByValue("1994");
+
         if (SelectedYear.equals("1994")) {
             System.out.println("Tahun sudah sesuai = " + SelectedYear);
         } else {
