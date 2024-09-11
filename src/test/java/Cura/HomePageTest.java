@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class homePage extends before {
+public class HomePageTest extends BeforeDoingTest {
+    // Define XPath
+    final By H1Homepage = By.xpath("//h1[contains(text(), 'VISITING A DOCTOR IS ONE TOUCH AWAY')]");
+    final By ButtonSeeDoctor = By.xpath("//a[contains(text(),'See a Doctor')]");
 
-    @Test
+    @Test(priority = 1)
     public void testHomePage() {
         driver.findElement(By.id("logo")).click();
 
@@ -16,9 +19,9 @@ public class homePage extends before {
         Assert.assertEquals(ExpectedH1, ActualH1);
 
         if (ExpectedH1.equals(ActualH1)) {
-            System.out.println("H1 Match");
+            System.out.println("H1 Match = " + ExpectedH1);
         } else {
-            System.out.println("H1 NOT Match");
+            System.out.println("H1 NOT Match = " + ExpectedH1);
         }
 
         WebElement seeDoctorButton = driver.findElement(ButtonSeeDoctor);
@@ -26,10 +29,7 @@ public class homePage extends before {
         boolean isClickable = seeDoctorButton.isDisplayed() && seeDoctorButton.isEnabled();
         Assert.assertTrue(isClickable, "The 'See a Doctor' button is not clickable");
 
-        if (isClickable) {
-            System.out.println("The 'See a Doctor' button is clickable.");
-        } else {
-            System.out.println("The 'See a Doctor' button is NOT clickable.");
-        }
+        driver.findElement(ButtonSeeDoctor).click();
+
     }
 }
